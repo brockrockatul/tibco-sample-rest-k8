@@ -1,0 +1,46 @@
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=com.cts.sample.rest.products.application&var-version=1.0.0-SNAPSHOT
+  labels:
+    app: com.cts.sample.rest.products.application
+    provider: fabric8
+    version: 1.0.0-SNAPSHOT
+    group: com.tibco.bw
+  name: bwce-sample
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    app: com.cts.sample.rest.products.application
+    provider: fabric8
+    group: com.tibco.bw
+  strategy:
+    rollingParams:
+      timeoutSeconds: 3600
+    type: Rolling
+  template:
+    metadata:
+      annotations:
+        fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=com.cts.sample.rest.products.application&var-version=1.0.0-SNAPSHOT
+      labels:
+        container: bwce-sample
+        project: bwce-sample
+        app: com.cts.sample.rest.products.application
+        provider: fabric8
+        version: 1.0.0-SNAPSHOT
+        group: com.tibco.bw
+      name: bwce-sample
+      namespace: default
+    spec:
+      containers:
+      - image: 717904358179.dkr.ecr.us-east-2.amazonaws.com/tibco-sapmle-rest
+        imagePullPolicy: Always
+        name: bwce-sample
+        ports:
+        - containerPort: 8087
+          name: simplifymedia
+  triggers:
+  - type: ConfigChange

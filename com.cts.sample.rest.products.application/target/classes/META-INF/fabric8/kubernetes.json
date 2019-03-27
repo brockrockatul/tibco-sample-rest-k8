@@ -1,0 +1,90 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "List",
+  "items" : [ {
+    "apiVersion" : "v1",
+    "kind" : "Service",
+    "metadata" : {
+      "labels" : {
+        "container" : "bwce-sample",
+        "provider" : "fabric8",
+        "project" : "bwce-sample",
+        "group" : "com.tibco.bw",
+        "expose" : "true",
+        "app" : "com.cts.sample.rest.products.application",
+        "version" : "1.0.0-SNAPSHOT"
+      },
+      "name" : "bwce-sample-service",
+      "namespace" : "default"
+    },
+    "spec" : {
+      "ports" : [ {
+        "port" : 80,
+        "protocol" : "TCP",
+        "targetPort" : 8087
+      } ],
+      "selector" : {
+        "container" : "bwce-sample",
+        "provider" : "fabric8",
+        "project" : "bwce-sample",
+        "group" : "com.tibco.bw",
+        "app" : "com.cts.sample.rest.products.application"
+      },
+      "type" : "LoadBalancer"
+    }
+  }, {
+    "apiVersion" : "extensions/v1beta1",
+    "kind" : "Deployment",
+    "metadata" : {
+      "annotations" : {
+        "fabric8.io/metrics-path" : "dashboard/file/kubernetes-pods.json/?var-project=com.cts.sample.rest.products.application&var-version=1.0.0-SNAPSHOT"
+      },
+      "labels" : {
+        "app" : "com.cts.sample.rest.products.application",
+        "provider" : "fabric8",
+        "version" : "1.0.0-SNAPSHOT",
+        "group" : "com.tibco.bw"
+      },
+      "name" : "bwce-sample"
+    },
+    "spec" : {
+      "replicas" : 2,
+      "revisionHistoryLimit" : 2,
+      "selector" : {
+        "matchLabels" : {
+          "app" : "com.cts.sample.rest.products.application",
+          "provider" : "fabric8",
+          "group" : "com.tibco.bw"
+        }
+      },
+      "template" : {
+        "metadata" : {
+          "annotations" : {
+            "fabric8.io/metrics-path" : "dashboard/file/kubernetes-pods.json/?var-project=com.cts.sample.rest.products.application&var-version=1.0.0-SNAPSHOT"
+          },
+          "labels" : {
+            "container" : "bwce-sample",
+            "project" : "bwce-sample",
+            "app" : "com.cts.sample.rest.products.application",
+            "provider" : "fabric8",
+            "version" : "1.0.0-SNAPSHOT",
+            "group" : "com.tibco.bw"
+          },
+          "name" : "bwce-sample",
+          "namespace" : "default"
+        },
+        "spec" : {
+          "containers" : [ {
+            "image" : "717904358179.dkr.ecr.us-east-2.amazonaws.com/tibco-sapmle-rest",
+            "imagePullPolicy" : "Always",
+            "name" : "bwce-sample",
+            "ports" : [ {
+              "containerPort" : 8087,
+              "name" : "simplifymedia"
+            } ]
+          } ]
+        }
+      }
+    }
+  } ]
+}

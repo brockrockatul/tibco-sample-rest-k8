@@ -1,0 +1,20 @@
+INDEX VERSION 1.127+C:\Users\brock\Documents\Work\TIBCO\BW6_1_k8\.metadata\.plugins\org.eclipse.jdt.core
+3252156348.index
+2412847961.index
+682262339.index
+516128145.index
+1992235340.index
+1256560192.index
+4147564968.index
+1955186035.index
+2835221085.index
+1893254148.index
+2646956503.index
+3665378896.index
+3737084399.index
+612986678.index
+3265672974.index
+1923874742.index
+720621692.index
+151982917.index
+2873979113.index

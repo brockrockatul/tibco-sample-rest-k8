@@ -1,0 +1,7 @@
+{
+    "records": [],
+    "resources": [{
+        "location": "Service Descriptors/com.cts.sample.rest.products.Products-ProductResource.json",
+        "type": "generated"
+    }]
+}

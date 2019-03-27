@@ -1,0 +1,105 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Summary about the new REST service.",
+    "description" : "Summary about the new REST service."
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/prd/manageProduct" : {
+      "post" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "post-prd-manageProduct",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/AddProductInputElement"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a AddProductOutputElement to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AddProductOutputElement"
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "",
+        "description" : "",
+        "operationId" : "get-prd-manageProduct",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "a AddProductInputElement to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/AddProductInputElement"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AddProductInputElement" : {
+      "type" : "object",
+      "properties" : {
+        "products" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/products",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "AddProductOutputElement" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "$ref" : "#/definitions/status"
+        }
+      }
+    },
+    "products" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "string"
+        },
+        "catagory" : {
+          "type" : "string"
+        }
+      }
+    },
+    "status" : {
+      "type" : "object",
+      "properties" : {
+        "msg" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
